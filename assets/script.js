@@ -1,4 +1,4 @@
-const apiKey = ""
+const apiKey = process.env.weatherapikey
 var currentWeather = {};
 var forecastWeather = {};
 var long;
