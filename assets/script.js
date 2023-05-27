@@ -153,7 +153,7 @@ $('.cityButton').on('click', function() {
 })
 
 getBrowserLocation()
-$(document).ready(function() {
-    drawCurrentWeather()
-    drawForecast()
+$(document).ready(async function() {
+    await drawCurrentWeather()
+    await drawForecast()
 });
