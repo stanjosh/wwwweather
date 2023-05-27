@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+
 :root {
     --header-bg1: #8555ff;
     --header-bg2: #120076;
@@ -5,9 +7,7 @@
 }
 
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
 }
 
 .header {
@@ -19,4 +19,36 @@
 
 .forecast {
     width: 20%
+}
+
+
+#main{
+    display: grid;
+    grid-template: 
+    "city curr"
+    "city fore" ;
+    grid-template-columns: 20% 80% ;
+}
+
+#currentWeather {
+    grid-area: curr;
+}
+
+#forecastContainer {
+    grid-area: fore;
+}
+
+#citiesContainer {
+    grid-area: city;
+}
+
+@media screen and (max-width: 768px) {
+    #main{
+        grid-template: 
+        "curr"
+        "fore"
+        "city" ;
+        grid-template-columns: 100% ;
+    }
+    
 }

@@ -15,9 +15,9 @@
     <header class="header">
         <div class="navbar w-100">
             <div class="container-fluid">
-                <form class="d-flex justify-content-between">
+                <form class="d-flex justify-content-between" id="searchBox">
                   <input class="form-control me-2" type="search" placeholder="e.g. Austin, TX" aria-label="Search">
-                  <button class="btn" type="submit">Search</button>
+                  <button class="btn text-light" type="submit">Search</button>
                 </form>
                 <div class="navbar-brand mb-0 h1">Weather Dashboard</div>
               </div>
@@ -25,28 +25,26 @@
             
         </div>
     </header>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col col-md-9 col-sm-12 mx-auto">
-                <div class="card w-100">
+    <div class="grid-container" id="main">
+
+            
+            <div id="currentWeather w-75">
+                <div class="card p-5">
                     <h2 id="currentPlaceName">city</h2>
-                    <p class="card-text"><span id="currentPlaceConditions"></span></p>
                     <p class="card-text"><span id="currentPlaceConditionsDescription"></span></p>
-                    <p class="card-text">Temperature: <span id="currentPlaceTemp">temp</span>&#8457;</p>
+                    <p class="card-text">Temperature: <span id="currentPlaceTemp">temp</span>&#176;F</p>
                     <p class="card-text">Wind: <span id="currentPlaceWind"></span></p>
                     <p class="card-text">Humidity: <span id="currentPlaceHumidity"></span></p>
                 </div>
-            
                 <h2>5-day Forecast</h2>
-            <div class="row row-cols-md-5 row-cols-md-1 h-100" id="forecastContainer">
-
-        </div>
+            </div>
+            <div id="forecastContainer" class="row"></div>
+            <div id="citiesContainer"></div>
     </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
     <script src="./assets/script.js"></script>
-    <script defer>drawForecast(); drawCurrentWeather()</script>
 </body>
 </html>
