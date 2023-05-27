@@ -18,7 +18,7 @@
 }
 
 .forecast {
-    width: 20%
+    width: 20%;
 }
 
 
@@ -49,6 +49,14 @@
         "fore"
         "city" ;
         grid-template-columns: 100% ;
+    }
+    .forecast {
+        flex: 0 1 576px;
+    }
+    #forecastContainer {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
     }
     
 }

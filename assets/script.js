@@ -80,11 +80,13 @@ async function drawCurrentWeather(){
         return resp.json()
     })
     .then((data) => {        
-    $('#currentPlaceName').text(`${data.name}, ${dayjs(data.dt_txt).format("M/D h:mm")}`)
-    $('#currentPlaceHumidity').text(data.main.humidity)
-    $('#currentPlaceTemp').text(toF(data.main.temp).toFixed(2))
+    $('#currentPlaceName').text(`${data.name}, ${dayjs(data.dt_txt).format("M/D h:mm a")}`)
+    $('#currentPlaceHumidity').text(data.main.humidity);
+    $('#currentWeatherIcon').attr('src', `https://openweathermap.org/img/w/${data.weather[0].icon}.png`)
+    $('#currentPlaceTemp').text(toF(data.main.temp).toFixed(0));
     $('#currentPlaceWind').text(data.wind.speed + ' mph ' + degToCompass(data.wind.deg))
-    $('currentPlaceConditionsDescription').text(data.weather[0].description)
+    $('#currentPlaceConditionsDescription').text(data.weather[0].description)
+    console.log(data.weather[0].description)
     })
 }
 
@@ -102,6 +104,7 @@ async function drawForecast(){
         let minTemp = 300;
         let maxTemp = 0;
         let dayTemp = (toF(data.list[i].main.temp).toFixed(0))
+        
         for (var t = i; t < i + 7; t++) {
             dayTemp = (toF(data.list[t].main.temp).toFixed(0))
             if  (dayTemp > maxTemp) {
@@ -114,8 +117,8 @@ async function drawForecast(){
             }
         }
         const forecastTemplate = 
-        `<div class="col-12 col-lg-2">
-        <div class="card forecast w-100 mx-0">
+        `
+        <div class="card forecast mx-0 mb-2">
             <div class="card-header">${dayjs(data.list[i].dt_txt).format('dddd, M/D')}</div>
             <div class="card-body bg-secondary text-light">
                 <h5 class="card-title">${data.list[i].weather[0].description}</h5>
@@ -124,6 +127,7 @@ async function drawForecast(){
                 <p class="card-text">Humidity: ${data.list[i].main.humidity}</p>
                 <p class="card-text">Wind: ${data.list[i].wind.speed + ' mph ' + degToCompass(data.list[i].wind.deg)}</p>
             </div></div></div>`
+        
         $("#forecastContainer").append(forecastTemplate);
     }})
 }

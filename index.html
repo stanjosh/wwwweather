@@ -17,7 +17,7 @@
             <div class="container-fluid">
                 <form class="d-flex justify-content-between" id="searchBox">
                   <input class="form-control me-2" type="search" placeholder="e.g. Austin, TX" aria-label="Search">
-                  <button class="btn text-light" type="submit">Search</button>
+                  <button class="btn btn-primary text-light" type="submit">Search</button>
                 </form>
                 <div class="navbar-brand mb-0 h1">Weather Dashboard</div>
               </div>
@@ -25,21 +25,32 @@
             
         </div>
     </header>
-    <div class="grid-container" id="main">
+    <div class="p-3" id="main">
 
-            
-            <div id="currentWeather w-75">
-                <div class="card p-5">
-                    <h2 id="currentPlaceName">city</h2>
-                    <p class="card-text"><span id="currentPlaceConditionsDescription"></span></p>
-                    <p class="card-text">Temperature: <span id="currentPlaceTemp">temp</span>&#176;F</p>
-                    <p class="card-text">Wind: <span id="currentPlaceWind"></span></p>
-                    <p class="card-text">Humidity: <span id="currentPlaceHumidity"></span></p>
-                </div>
-                <h2>5-day Forecast</h2>
+            <div class="card mb-5">
+            <div id="currentWeather" class="row w-100">
+                    
+                        <div class="col-7 p-3 mb-2">
+                            <h3 id="currentPlaceName">city</h3>
+                            <div class="card-text h3"><span id="currentPlaceConditionsDescription"></span></div>
+                            <div class="card-text h2 display-1"><span id="currentPlaceTemp">temp</span>&#176;F</div>
+                        </div>
+                        <div class="col-5 d-flex flex-column justify-content-end">
+                            <img class="img-fluid mx-auto d-block h-100" id="currentWeatherIcon" src="">
+                            <div class="card-text">Wind: <span id="currentPlaceWind"></span></div>
+                            <div class="card-text">Humidity: <span id="currentPlaceHumidity"></span></div>
+                        </div>
+                    </div>
+                  
+                     
             </div>
-            <div id="forecastContainer" class="row"></div>
-            <div id="citiesContainer"></div>
+            <div>
+            <h2>5-day Forecast</h2>   
+            <div id="forecastContainer" class="mb-3 d-flex flex-row"></div>
+            </div>
+            <div id="citiesContainer" class="px-3"></div>
+
+        </div> 
     </div>
 
 
