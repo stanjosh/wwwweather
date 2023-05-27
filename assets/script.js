@@ -150,6 +150,6 @@ $('.cityButton').on('click', function() {
 
 getBrowserLocation()
 $(document).ready(function() {
-    //drawCurrentWeather()
-    //drawForecast()
+    drawCurrentWeather()
+    drawForecast()
 });
