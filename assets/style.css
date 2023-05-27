@@ -1,0 +1,22 @@
+:root {
+    --header-bg1: #8555ff;
+    --header-bg2: #120076;
+    --color-light: #f3e8d7;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    background-image: linear-gradient(to right, var(--header-bg1),var(--header-bg2));
+    color: var(--color-light);
+    justify-content: center;
+}
+
+.forecast {
+    width: 20%
+}
