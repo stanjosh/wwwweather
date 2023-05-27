@@ -1,4 +1,4 @@
-const apiKey = "5d57c1a075cc44b480c4eedf9be3116d"
+const apiKey = ""
 var currentWeather = {};
 var forecastWeather = {};
 var long;
