@@ -4,16 +4,7 @@ var forecastWeather = {};
 var long;
 var lat;
 
-var sideCities = [
-    'Atlanta',
-    'Denver',
-    'Seattle',
-    'San Francisco',
-    'Orlando',
-    'New York',
-    'Chicago',
-    'Austin'
-]
+var searchedCities = [];
 
 function toF(t) {return (t * 9) / 5 + 32}
 
@@ -35,21 +26,6 @@ function getBrowserLocation(){
     else {
         return false
     }
-}
-
-
-async function searchWeather(search){
-    await getCityCoords(search).then((resp) => {
-        return resp.json()
-    })
-    .then((data) => {
-        lat = data[0].lat
-        long = data[0].lon
-        drawCurrentWeather()
-        drawForecast()
-        console.log(data)
-    })
-    
 }
 
 
@@ -118,7 +94,7 @@ async function drawForecast(){
         }
         const forecastTemplate = 
         `
-        <div class="card forecast mx-0 mb-2">
+        <div class="card forecast mx-auto mb-2">
             <div class="card-header">${dayjs(data.list[i].dt_txt).format('dddd, M/D')}</div>
             <div class="card-body bg-secondary text-light">
                 <h5 class="card-title">${data.list[i].weather[0].description}</h5>
@@ -132,28 +108,55 @@ async function drawForecast(){
     }})
 }
 
-for (var i in sideCities) {
-    $('#citiesContainer').append(`<button id="button${i}" data-city="${sideCities[i]}">`)
-    $(`#button${i}`).addClass('btn btn-primary w-100 mb-3 cityButton')
-    $(`#button${i}`).text(sideCities[i])
+async function searchWeather(search){
+    saveSearchHistory(search)
+    await getCityCoords(search).then((resp) => {
+        return resp.json()
+    })
+    .then((data) => {
+        lat = data[0].lat
+        long = data[0].lon
+        drawCurrentWeather()
+        drawForecast()
+        loadSearchHistory()
+        console.log(data)
+        
+    })
+    
 }
 
+function loadSearchHistory() {
+    sideCities = JSON.parse(localStorage.getItem('searchHistory'))
+    $('#citiesContainer').empty()
+    for (var i in sideCities) {
+        $('#citiesContainer').append(`<button id="button${i}" data-city="${sideCities[i]}">`)
+        $(`#button${i}`).addClass('btn btn-primary w-100 mb-3 cityButton')
+        $(`#button${i}`).text(sideCities[i])
+    }
+}
 
+function saveSearchHistory(search) {
+    searchedCities.push(search)
+    localStorage.setItem('searchHistory', 
+    JSON.stringify(searchedCities.slice(0, 10)))
+}
 
 $('#searchBox').on('submit' , function(event) {
     event.preventDefault();
     search = $(this).children('input').val()
-    searchWeather(search)
     console.log(search)
+    searchWeather(search)
 })
 
-$('.cityButton').on('click', function() {
+$(document).on('click', '.cityButton', function() {
     console.log($(this).attr('data-city'))
     searchWeather($(this).attr('data-city'))
 })
+
 
 getBrowserLocation()
 $(document).ready(async function() {
     await drawCurrentWeather()
     await drawForecast()
+    loadSearchHistory()
 });
