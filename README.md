@@ -7,10 +7,14 @@ It fetches a geoloction and then weather data from [openweathermap.org](https://
 
 
 
-![behold its majesty](./assets/img/screenshot.png)
+![behold its long majesty](./assets/img/screenshot.png)
+
+![behold its wide majesty](./assets/img/screenshot2.png)
 
 
 The deployment on github pages is here: [wwwweather](https://stanjosh.github.io/wwwweather/)
+
+
 
 
 ## problems
