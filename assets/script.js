@@ -32,7 +32,8 @@ function getBrowserLocation(){
 async function getCityCoords(search) {
     const api = `https://api.openweathermap.org/geo/1.0/direct?q=${search},US&limit=3&appid=${apiKey}`;
     const getCoords = fetch(api)
-    return getCoords}
+    return getCoords
+}
 
 
 async function getForecast(){
@@ -75,7 +76,6 @@ async function drawForecast(){
     .then((data) => {  
     $('#forecastContainer').empty()
     console.log(data)
-    tempArr = data
     for (var i = 0; i < data.list.length; i += 8) {
         let minTemp = 300;
         let maxTemp = 0;
@@ -138,7 +138,7 @@ function loadSearchHistory() {
 function saveSearchHistory(search) {
     searchedCities.push(search)
     localStorage.setItem('searchHistory', 
-    JSON.stringify(searchedCities.slice(0, 10)))
+    JSON.stringify(searchedCities.slice(-11, -1)))
 }
 
 $('#searchBox').on('submit' , function(event) {
